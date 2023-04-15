@@ -1,21 +1,10 @@
 type Currency = "USD" | "RUB";
 
-enum Brands {
-	brand_1 = 1,
-	brand_2,
-	brand_3,
-	brand_4,
-	brand_5,
-	brand_6,
-	brand_7,
-	brand_8,
-	brand_9,
-}
-
 export interface IBrand {
 	id: number;
 	title: string;
 	sort: string;
+	code: string;
 }
 
 export interface IProduct {
@@ -24,9 +13,9 @@ export interface IProduct {
 	sku: string;
 	title: string;
 	regular_price: {
-		currency: string;
+		currency: Currency | string;
 		value: number;
 	};
 	image: string;
-	brand: Brands;
+	brand: number;
 }

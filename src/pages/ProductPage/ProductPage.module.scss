@@ -5,6 +5,13 @@
     align-items: center;
 }
 
-.filter__wrapper {
+.filter {
+    display: flex;
+    gap: 10px;
+}
 
+.brands {
+    & > ul {
+        list-style: none;
+    }
 }

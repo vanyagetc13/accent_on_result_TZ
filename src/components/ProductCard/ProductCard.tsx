@@ -9,8 +9,11 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
 	return (
 		<div className={styles.card} key={product.id}>
-			{product.title}
 			<img src={product.image} alt={product.title} />
+			<h4>{product.title}</h4>
+			<div
+				className={styles.price}
+			>{`${product.regular_price.value} ${product.regular_price.currency}`}</div>
 		</div>
 	);
 };
