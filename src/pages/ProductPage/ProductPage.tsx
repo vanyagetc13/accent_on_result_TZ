@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ProductCard from "../../components/ProductCard/ProductCard";
 import { IBrand, IBrandCheck, IProduct } from "../../types";
-import styles from "./ProductPage.module.scss";
 import brands from "../../assets/brands.json";
 import products from "../../assets/products.json";
 import {
@@ -9,6 +7,12 @@ import {
 	useQueriedProductList,
 } from "../../hooks/index";
 import usePagination from "../../hooks/usePagination";
+import ProductList from "../../components/ProductList/ProductList";
+import PaginationBox from "../../components/PaginationBox/PaginationBox";
+
+import styles from "./ProductPage.module.scss";
+import BrandsFilter from "../../components/Filters/BrandsFilter/BrandsFilter";
+import MyInput from "../../components/UI/MyInput/MyInput";
 
 const ProductPage = () => {
 	const productList: IProduct[] = products;
@@ -25,7 +29,9 @@ const ProductPage = () => {
 	const [usePaginate, pages] = usePagination(
 		queriedAndFilteredProductList,
 		6,
-		currentPage
+		currentPage,
+		query,
+		brandChecks
 	);
 
 	const handleCheckBoxChange = (code: string) => {
@@ -49,58 +55,23 @@ const ProductPage = () => {
 	}, []);
 	return (
 		<div className={styles.page}>
+			<aside className={styles.aside}>
+				<h3>Фильтры:</h3>
+				<BrandsFilter
+					checkBoxChange={handleCheckBoxChange}
+					brandList={brandList}
+					brandChecks={brandChecks}
+				/>
+			</aside>
 			<div className={styles.filter}>
-				<div>
-					<input
-						type='text'
-						value={query}
-						onChange={(e) => {
-							setQuery(e.currentTarget.value);
-						}}
-					/>
-				</div>
-				<div className={styles.brands}>
-					<h4>Бренды</h4>
-					<div className={styles.brands__collapse}>
-						{brandList.map((brand) => {
-							const brandCheck = brandChecks.find(
-								(e) => e.code === brand.code
-							);
-							return (
-								<div
-									key={brand.code}
-									className={styles.brand__wrapper}
-								>
-									<input
-										type='checkbox'
-										checked={brandCheck?.checked || false}
-										onChange={() =>
-											handleCheckBoxChange(brand.code)
-										}
-									/>
-									<div>{brand.title}</div>
-								</div>
-							);
-						})}
-					</div>
-				</div>
+				<MyInput
+					value={query}
+					setValue={(e) => setQuery(e.currentTarget.value)}
+					placeHolder='Поиск по названию...'
+				/>
 			</div>
-			<div className={styles.list}>
-				{usePaginate.map((product) => (
-					<ProductCard key={product.id} product={product} />
-				))}
-			</div>
-			<div className={styles.pagination}>
-				{pages.map((page) => (
-					<div
-						key={`${page} + ${Number(new Date())}`}
-						onClick={() => setCurrentPage(page)}
-						className={styles.page}
-					>
-						{page}
-					</div>
-				))}
-			</div>
+			<ProductList list={usePaginate} />
+			<PaginationBox setCurPage={setCurrentPage} pages={pages} />
 		</div>
 	);
 };

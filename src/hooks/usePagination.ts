@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { IBrandCheck } from "./../types";
 
 const getPaginatedList = <T>(list: T[], max: number, currentPage: number) => {
 	let result: T[] = [];
@@ -20,11 +21,25 @@ const getPages = (length: number, max: number) => {
 	return result;
 };
 
+const checkBrandCheck = (checks: IBrandCheck[]) => {
+	let result: boolean = false;
+	for (let brand of checks) {
+		if (brand.checked) {
+			result = true;
+			break;
+		}
+	}
+	return result;
+};
+
 const usePagination = <T>(
 	list: T[],
 	max: number,
-	currentPage: number
+	currentPage: number,
+	query: string,
+	brandChecks: IBrandCheck[]
 ): [T[], number[]] => {
+	if (checkBrandCheck(brandChecks) || query) currentPage = 1;
 	const paginate = useMemo(() => {
 		if (list.length === 0) return list;
 		return getPaginatedList(list, max, currentPage);

@@ -3,45 +3,18 @@
 	flex-direction: column;
 	gap: 20px;
 	align-items: center;
-}
-
-.list {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 10px;
+	position: relative;
 }
 
 .filter {
 	display: flex;
-	gap: 10px;
+	gap: 20px;
 }
 
-.brands {
-	& > ul {
-		list-style: none;
-	}
-
-	.brand__wrapper {
-		display: flex;
-		gap: 10px;
-	}
-}
-
-.pagination {
+.aside {
+	position: fixed;
+	left: 10px;
+	width: 15%;
 	display: flex;
-	gap: 10px;
-	margin-bottom: 10px;
-
-	.page {
-		color: white;
-		background-color: #400606;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 30px;
-		height: 30px;
-		cursor: pointer;
-		border-radius: 50%;
-	}
+	flex-direction: column;
 }
