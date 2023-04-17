@@ -34,6 +34,12 @@ a {
 .nav {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	width: 90%;
 	margin: 0 auto;
+}
+
+.cart {
+	display: flex;
+	gap: 5px;
 }

@@ -24,3 +24,7 @@ export interface IBrandCheck {
 	code: string;
 	checked: boolean;
 }
+
+export interface ICart extends IProduct{
+	count: number;
+}

@@ -8,3 +8,16 @@
 		width: 100%;
 	}
 }
+
+.bot {
+	display: flex;
+	justify-content: space-between;
+	width: 90%;
+	.price {
+		font-size: 20px;
+		line-height: 20px;
+	}
+	.add {
+		cursor: pointer;
+	}
+}
