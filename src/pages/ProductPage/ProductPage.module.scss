@@ -1,17 +1,47 @@
 .page {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	align-items: center;
+}
+
+.list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
 }
 
 .filter {
-    display: flex;
-    gap: 10px;
+	display: flex;
+	gap: 10px;
 }
 
 .brands {
-    & > ul {
-        list-style: none;
-    }
+	& > ul {
+		list-style: none;
+	}
+
+	.brand__wrapper {
+		display: flex;
+		gap: 10px;
+	}
+}
+
+.pagination {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 10px;
+
+	.page {
+		color: white;
+		background-color: #400606;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 30px;
+		height: 30px;
+		cursor: pointer;
+		border-radius: 50%;
+	}
 }

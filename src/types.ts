@@ -19,3 +19,8 @@ export interface IProduct {
 	image: string;
 	brand: number;
 }
+
+export interface IBrandCheck {
+	code: string;
+	checked: boolean;
+}
